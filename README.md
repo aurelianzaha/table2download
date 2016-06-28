@@ -7,12 +7,13 @@ Usage:
 Load jQuery and table2download.js
 
 and simply use:
-```jQuery( "#table1" ).table_download({
-```    format: "xls",
-```    separator: ",",
-```    filename: "download",
-```    linkname: "Click here for XLS",
-```    quotes: "\""
-```});
+```
+jQuery( "#table1" ).table_download({
+    format: "xls",
+    separator: ",",
+    filename: "download",
+    quotes: "\""
+});
+```
 
 format: "xls" / "csv"
