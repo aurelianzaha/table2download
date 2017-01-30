@@ -21,9 +21,9 @@
                 var csv = "";
                 // loop each row of the table
                 $(this).find("tr").each(function () {
+                    var sep = "";
                     // loop each td cell of the row
                     if ($(this).find("td").length > 0) {
-                        var sep = "";
                         $(this).find("td").each(function () {
                             csv += sep + settings.quotes + $(this).text() + settings.quotes;
                             sep = settings.separator;
@@ -32,7 +32,6 @@
                     }
                     // loop each th cell of the row
                     else if ($(this).find("th").length > 0) {
-                        var sep = "";
                         $(this).find("th").each(function () {
                             csv += sep + settings.quotes + $(this).text() + settings.quotes;
                             sep = settings.separator;
@@ -42,23 +41,22 @@
                 });
 
 
-                window.URL = window.URL || window.webkiURL;
+                window.URL = window.URL || window.webkitURL;
                 // create the blob
                 var blob = new Blob([csv]);
                 // create the URL
                 var blobURL = window.URL.createObjectURL(blob);        
 
-                fileName = settings.filename+'.csv';
+                var fileName = settings.filename+'.csv';
                 // add the download link
                 $(this).append("<a class='table_download_csv_link' href='"+blobURL+"' download='"+fileName+"' export_id='"+export_id+"'>"+settings.linkname+"</a>");
 
                 // add the event listener for IE blob download
                 if (window.navigator.msSaveOrOpenBlob) {
                     var fileData = [csv];
-                    blobObject = new Blob(fileData);
+                    var blobObject = new Blob(fileData);
                     export_data_array.push ({export_id: export_id, file_name: fileName, blob_object: blobObject});
                     $(this).find('.table_download_csv_link').click(function(){
-                        console.log(export_data_array);
                         var export_id = $(this).attr("export_id");
                         for (var i=0; i < export_data_array.length ; i++) {
                             if (export_data_array[i].export_id == export_id) {
@@ -114,23 +112,22 @@
                 csv += '</Worksheet>'+settings.newline;
                 csv += '</Workbook>'+settings.newline;
 
-                window.URL = window.URL || window.webkiURL;
+                window.URL = window.URL || window.webkitURL;
                 // create the blob
                 var blob = new Blob([csv]);
                 // create the URL
                 var blobURL = window.URL.createObjectURL(blob);        
 
-                fileName = settings.filename+'.xls';
+                var fileName = settings.filename+'.xls';
                 // add the download link
                 $(this).append("<a class='table_download_xls_link' href='"+blobURL+"' download='"+fileName+"' export_id='"+export_id+"'>"+settings.linkname+"</a>");
 
                 // add the event listener for IE blob download
                 if (window.navigator.msSaveOrOpenBlob) {
                     var fileData = [csv];
-                    blobObject = new Blob(fileData);
+                    var blobObject = new Blob(fileData);
                     export_data_array.push ({export_id: export_id, file_name: fileName, blob_object: blobObject});
                     $(this).find('.table_download_xls_link').click(function(){
-                        console.log(export_data_array);
                         var export_id = $(this).attr("export_id");
                         for (var i=0; i < export_data_array.length ; i++) {
                             if (export_data_array[i].export_id == export_id) {
